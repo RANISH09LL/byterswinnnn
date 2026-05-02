@@ -1,0 +1,18 @@
+{
+  "name": "byters-lead-engine",
+  "version": "1.0.0",
+  "description": "Backend pipeline engine for Byters Lead Finder. Runs in Node.js — NOT part of the frontend.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node --env-file=../.env job.js",
+    "test-ingest": "node --env-file=../.env test_ingest.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.105.1",
+    "dotenv": "^17.4.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

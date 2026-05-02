@@ -41,37 +41,53 @@ Per business card:
 ### 5. Loading State
 - Skeleton cards while scraping/fetching
 
-## 🛠 Tech Stack
+## ⚠️ Important: Project Structure
 
-- **React 19** + **Vite**
-- **axios** for HTTP requests
-- **@supabase/supabase-js** for database
-- **Plain CSS** (no CSS frameworks)
-- Environment variables via `.env` (VITE_GROQ_KEY, VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY)
+This repo has **two separate parts**. They run independently:
 
-## 📦 Installation
+| Part | Location | Runs With |
+|------|----------|-----------|
+| **Frontend** (React dashboard) | `src/` | `npm run dev` (Vite) |
+| **Backend engine** (AI pipeline) | `engine/` | `node engine/job.js` (Node.js only) |
 
+> The `engine/` folder is **NOT** part of the React app. Never import from `engine/` in `src/` — they are separate.
+
+---
+
+## 🚀 Setup (for anyone cloning this repo)
+
+### Step 1 — Install frontend dependencies
 ```bash
 npm install
 ```
 
-## 🚦 Development
+### Step 2 — Create your `.env` file
+```bash
+cp .env.example .env
+```
+Then open `.env` and fill in your real credentials (ask the repo owner for these values):
+```
+VITE_GROQ_KEY=your_groq_api_key_here
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+```
 
+> ⚠️ **The `.env` file is secret — it is gitignored and was NOT pushed to GitHub.** You must create it manually.
+
+### Step 3 — Run the frontend
 ```bash
 npm run dev
 ```
-
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## 🌐 Environment Variables
-
-Copy `.env.example` to `.env`:
-
+### Step 4 (optional) — Run the backend engine
+The `engine/` folder is a standalone Node.js pipeline. Run it **separately** in a terminal:
 ```bash
-VITE_GROQ_KEY=your_groq_api_key_here
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your_anon_key_here
+node --env-file=.env engine/job.js
 ```
+> Requires Node.js 18+
+
+
 
 ## 📝 WhatsApp Message Template
 
